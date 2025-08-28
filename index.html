@@ -16,7 +16,7 @@
         .hover-pop { transition: all 0.3s ease; }
         .hover-pop:hover { transform: translateY(-10px) scale(1.05); }
         .neon-border { border: 2px solid #00F2FE; box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
-        .video-overlay { background: linear-gradient(135deg, rgba(255, 65, 108, 0.8) 0%, rgba(255, 75, 43, 0.6) 100%); }
+        .video-overlay { background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%); }
         .hexagon { clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%); }
         .angled-card { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 20px 100%); }
         
@@ -112,7 +112,7 @@
 </header>
 
 <section id="hero" class="relative h-[100vh] overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-start/90 via-primary-end/80 to-accent/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-blue-900/60"></div>
     <img class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4956c3b6e4-3d53a61de0b0cf080ceb.png" alt="modern web design agency office with creative team working on computers, vibrant startup atmosphere, cinematic lighting">
     <div class="absolute inset-0 video-overlay"></div>
     
@@ -559,7 +559,13 @@
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover-pop">
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover-pop relative">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div class="bg-yellow-400 text-dark px-6 py-2 rounded-full font-montserrat font-bold text-sm">
+                        🔥 MOST POPULAR
+                    </div>
+                </div>
+                
                 <div class="text-center mb-8">
                     <div class="text-lg font-montserrat font-semibold text-accent mb-2">STANDARD PLAN</div>
                     <div class="text-6xl font-montserrat font-bold text-white mb-4">£47<span class="text-2xl text-white/60">/month</span></div>
@@ -608,12 +614,6 @@
             </div>
             
             <div class="gradient-primary rounded-3xl p-8 relative glow-primary hover-pop">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div class="bg-yellow-400 text-dark px-6 py-2 rounded-full font-montserrat font-bold text-sm">
-                        🔥 MOST POPULAR
-                    </div>
-                </div>
-                
                 <div class="text-center mb-8">
                     <div class="text-lg font-montserrat font-semibold text-white mb-2">CUSTOM PREMIUM</div>
                     <div class="text-6xl font-montserrat font-bold text-white mb-4">Custom<span class="text-2xl text-white/80"> pricing</span></div>
