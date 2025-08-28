@@ -113,9 +113,10 @@
 
 <section id="hero" class="relative h-[100vh] overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-blue-900/60"></div>
-    <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-programming-code-typing-26440-large.mp4" type="video/mp4">
-        <source src="https://vod-progressive.akamaized.net/exp=1703116800~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3831%2F14%2F368954684%2F1533882807.mp4~hmac=7b9e2e5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f/vimeo-prod-skyfire-std-us/01/3831/14/368954684/1533882807.mp4" type="video/mp4">
+    <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
+        <source src="https://player.vimeo.com/external/347048397.hd.mp4?s=a9bb479e0eaf587c18dd6b854fa3ad9bb8fbf7bb&profile_id=174" type="video/mp4">
+        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
         <!-- Fallback for browsers that don't support video -->
         <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4956c3b6e4-3d53a61de0b0cf080ceb.png" alt="modern web design agency office with creative team working on computers, vibrant startup atmosphere, cinematic lighting">
     </video>
@@ -1180,5 +1181,26 @@
     </div>
 </footer>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('#hero video');
+    if (video) {
+        // Ensure video plays on load
+        video.play().catch(function(error) {
+            console.log('Video autoplay failed:', error);
+        });
+        
+        // Fallback: try to play video on user interaction
+        document.addEventListener('click', function() {
+            if (video.paused) {
+                video.play().catch(function(error) {
+                    console.log('Video play failed:', error);
+                });
+            }
+        }, { once: true });
+    }
+});
+</script>
 
 </body></html>
