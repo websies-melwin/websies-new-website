@@ -471,7 +471,7 @@
 </div>
 
 <section id="hero" class="relative min-h-screen overflow-hidden">
-    <!-- Video Background with CDN and Multiple Fallbacks -->
+    <!-- Video Background with GitHub Raw Content -->
     <div class="absolute inset-0 w-full h-full">
         <!-- Primary Video Element -->
         <video 
@@ -483,11 +483,12 @@
             playsinline 
             preload="auto"
             poster="https://storage.googleapis.com/uxpilot-auth.appspot.com/4956c3b6e4-3d53a61de0b0cf080ceb.png">
-            <!-- Use sample video from CDN as primary source -->
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-            <!-- Fallback to another CDN video -->
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            <!-- Local file as last resort -->
+            <!-- Primary source: GitHub raw content -->
+            <source src="https://raw.githubusercontent.com/bjcwheller-coder/Websies-website/master/hero-background.mp4" type="video/mp4">
+            <!-- Secondary source: Alternative GitHub raw link -->
+            <source src="https://github.com/bjcwheller-coder/Websies-website/raw/master/hero-background.mp4" type="video/mp4">
+            <!-- Local file fallback -->
+            <source src="hero-background.mp4" type="video/mp4">
             <source src="./hero-background.mp4" type="video/mp4">
         </video>
         
