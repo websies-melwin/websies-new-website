@@ -50,20 +50,20 @@ function loadHeaderDirectly() {
     if (headerPlaceholder) {
         headerPlaceholder.innerHTML = `
 <!-- Global Header Component -->
-<header id="header" class="fixed w-full top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-white/5" style="background-color: rgba(19, 23, 31, 0.8);">
-    <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center" style="padding-top: 1.25rem; padding-bottom: 1.25rem; min-height: 80px;">
+<header id="header" class="fixed w-full top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
+    <div class="container mx-auto px-4 sm:px-6 py-5 flex justify-between items-center">
         <!-- Logo -->
-        <a href="index.html" class="font-montserrat font-bold text-white" style="font-size: 1.5rem; line-height: 2rem;">
+        <a href="index.html" class="text-2xl font-montserrat font-bold text-white">
             Websies
         </a>
         
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center" style="gap: 2rem;">
-            <a href="index.html" data-nav="home" class="text-white/70 hover:text-accent font-inter transition-colors" style="font-size: 0.875rem; line-height: 1.25rem;">Home</a>
-            <a href="index.html#process" data-nav="process" class="text-white/70 hover:text-accent font-inter transition-colors" style="font-size: 0.875rem; line-height: 1.25rem;">Process</a>
-            <a href="pricing.html" data-nav="pricing" class="text-white/70 hover:text-accent font-inter transition-colors" style="font-size: 0.875rem; line-height: 1.25rem;">Pricing</a>
-            <a href="index.html#testimonials" data-nav="testimonials" class="text-white/70 hover:text-accent font-inter transition-colors" style="font-size: 0.875rem; line-height: 1.25rem;">Reviews</a>
-            <a href="index.html#contact" data-nav="contact" class="text-white/70 hover:text-accent font-inter transition-colors" style="font-size: 0.875rem; line-height: 1.25rem;">Contact</a>
+        <nav class="hidden lg:flex items-center space-x-8">
+            <a href="index.html" data-nav="home" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">Home</a>
+            <a href="index.html#process" data-nav="process" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">Process</a>
+            <a href="pricing.html" data-nav="pricing" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">Pricing</a>
+            <a href="index.html#testimonials" data-nav="testimonials" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">Reviews</a>
+            <a href="index.html#contact" data-nav="contact" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">Contact</a>
         </nav>
         
         <!-- CTA Button and User Menu -->
