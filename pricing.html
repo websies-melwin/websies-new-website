@@ -5,7 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - Websies | Simple, Transparent Pricing</title>
     <meta name="description" content="£47/month. No contracts. Cancel anytime. See your website demo before paying anything.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="auth.js"></script>
@@ -330,13 +348,10 @@
       }
     </style>
 </head>
-<body class="font-sans min-h-screen flex flex-col" style="background: linear-gradient(135deg, #13171F 0%, #1A1F2E 50%, #13171F 100%); background-attachment: fixed;">
+<body class="font-sans" style="background: linear-gradient(135deg, #13171F 0%, #1A1F2E 50%, #13171F 100%); background-attachment: fixed;">
 
 <!-- Global Header Placeholder -->
 <div id="header-placeholder"></div>
-
-<!-- Main Content Wrapper -->
-<main class="flex-grow">
 
 <!-- Hero Section (Unique for pricing page) -->
 <section class="relative pb-20 overflow-hidden" style="padding-top: 80px;">
@@ -742,11 +757,9 @@
     </div>
 </section>
 
-</main>
-
 <!-- Footer (Exact copy from home page) -->
 <footer id="footer" class="relative bg-[var(--bg-primary)]">
-    <div class="container mx-auto px-6 py-16">
+    <div class="container mx-auto px-4 sm:px-6 py-16">
         <div class="">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
                 <div class="lg:col-span-2">
