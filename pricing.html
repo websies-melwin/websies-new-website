@@ -26,6 +26,10 @@
             --glow-blue: rgba(10, 132, 255, 0.15);
         }
         
+        html, body {
+            min-height: 100vh;
+        }
+        
         body { 
             background: linear-gradient(135deg, var(--bg-primary) 0%, #1A1F2E 50%, #13171F 100%);
             background-attachment: fixed;
@@ -325,7 +329,7 @@
       }
     </style>
 </head>
-<body class="font-sans" style="background: linear-gradient(135deg, #13171F 0%, #1A1F2E 50%, #13171F 100%); background-attachment: fixed;">
+<body class="font-sans min-h-screen flex flex-col" style="background: linear-gradient(135deg, #13171F 0%, #1A1F2E 50%, #13171F 100%); background-attachment: fixed;">
 
 <!-- Header (Exact copy from home page) -->
 <header id="header" class="fixed w-full top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
@@ -425,6 +429,9 @@
         </div>
     </div>
 </div>
+
+<!-- Main Content Wrapper -->
+<main class="flex-grow">
 
 <!-- Hero Section (Unique for pricing page) -->
 <section class="relative pb-20 overflow-hidden" style="padding-top: 80px;">
@@ -829,6 +836,8 @@
         </div>
     </div>
 </section>
+
+</main>
 
 <!-- Footer (Exact copy from home page) -->
 <footer id="footer" class="relative bg-[var(--bg-primary)]">
