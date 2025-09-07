@@ -1,0 +1,331 @@
+/* Proportional Scaling System - Everything scales together */
+
+/* Base viewport-based scaling */
+:root {
+    /* Calculate scale based on viewport width - 1920px is our base (100%) */
+    --base-scale: min(max(0.5, 100vw / 1920), 1.5);
+    
+    /* Font sizes that scale proportionally */
+    --font-xs: calc(0.75rem * var(--base-scale));
+    --font-sm: calc(0.875rem * var(--base-scale));
+    --font-base: calc(1rem * var(--base-scale));
+    --font-lg: calc(1.125rem * var(--base-scale));
+    --font-xl: calc(1.25rem * var(--base-scale));
+    --font-2xl: calc(1.5rem * var(--base-scale));
+    --font-3xl: calc(1.875rem * var(--base-scale));
+    --font-4xl: calc(2.25rem * var(--base-scale));
+    --font-5xl: calc(3rem * var(--base-scale));
+    --font-6xl: calc(3.75rem * var(--base-scale));
+    
+    /* Spacing that scales proportionally */
+    --spacing-1: calc(0.25rem * var(--base-scale));
+    --spacing-2: calc(0.5rem * var(--base-scale));
+    --spacing-3: calc(0.75rem * var(--base-scale));
+    --spacing-4: calc(1rem * var(--base-scale));
+    --spacing-5: calc(1.25rem * var(--base-scale));
+    --spacing-6: calc(1.5rem * var(--base-scale));
+    --spacing-8: calc(2rem * var(--base-scale));
+    --spacing-10: calc(2.5rem * var(--base-scale));
+    --spacing-12: calc(3rem * var(--base-scale));
+    --spacing-16: calc(4rem * var(--base-scale));
+    --spacing-20: calc(5rem * var(--base-scale));
+    --spacing-24: calc(6rem * var(--base-scale));
+    
+    /* Border radius that scales */
+    --radius-sm: calc(0.125rem * var(--base-scale));
+    --radius-md: calc(0.375rem * var(--base-scale));
+    --radius-lg: calc(0.5rem * var(--base-scale));
+    --radius-xl: calc(0.75rem * var(--base-scale));
+    --radius-2xl: calc(1rem * var(--base-scale));
+    --radius-full: 9999px;
+}
+
+/* Apply proportional scaling to all elements */
+* {
+    /* Smooth transitions when scaling changes */
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+/* Scale the entire page content */
+body {
+    transform-origin: top center;
+    min-height: 100vh;
+}
+
+/* Video background scaling */
+#hero video,
+#hero .absolute.inset-0 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--base-scale));
+    transform-origin: center center;
+}
+
+/* Scale text sizes */
+.text-xs { font-size: var(--font-xs) !important; }
+.text-sm { font-size: var(--font-sm) !important; }
+.text-base { font-size: var(--font-base) !important; }
+.text-lg { font-size: var(--font-lg) !important; }
+.text-xl { font-size: var(--font-xl) !important; }
+.text-2xl { font-size: var(--font-2xl) !important; }
+.text-3xl { font-size: var(--font-3xl) !important; }
+.text-4xl { font-size: var(--font-4xl) !important; }
+.text-5xl { font-size: var(--font-5xl) !important; }
+.text-6xl { font-size: var(--font-6xl) !important; }
+
+/* Responsive text sizing with proportional scaling */
+@media (min-width: 768px) {
+    .md\:text-4xl { font-size: var(--font-4xl) !important; }
+    .md\:text-5xl { font-size: var(--font-5xl) !important; }
+    .md\:text-6xl { font-size: var(--font-6xl) !important; }
+}
+
+@media (min-width: 1024px) {
+    .lg\:text-5xl { font-size: var(--font-5xl) !important; }
+    .lg\:text-6xl { font-size: var(--font-6xl) !important; }
+}
+
+/* Scale padding */
+.p-4 { padding: var(--spacing-4) !important; }
+.p-6 { padding: var(--spacing-6) !important; }
+.p-8 { padding: var(--spacing-8) !important; }
+.p-10 { padding: var(--spacing-10) !important; }
+.p-12 { padding: var(--spacing-12) !important; }
+
+.px-4 { padding-left: var(--spacing-4) !important; padding-right: var(--spacing-4) !important; }
+.px-6 { padding-left: var(--spacing-6) !important; padding-right: var(--spacing-6) !important; }
+.px-8 { padding-left: var(--spacing-8) !important; padding-right: var(--spacing-8) !important; }
+.px-10 { padding-left: var(--spacing-10) !important; padding-right: var(--spacing-10) !important; }
+
+.py-2 { padding-top: var(--spacing-2) !important; padding-bottom: var(--spacing-2) !important; }
+.py-3 { padding-top: var(--spacing-3) !important; padding-bottom: var(--spacing-3) !important; }
+.py-4 { padding-top: var(--spacing-4) !important; padding-bottom: var(--spacing-4) !important; }
+.py-5 { padding-top: var(--spacing-5) !important; padding-bottom: var(--spacing-5) !important; }
+.py-6 { padding-top: var(--spacing-6) !important; padding-bottom: var(--spacing-6) !important; }
+.py-8 { padding-top: var(--spacing-8) !important; padding-bottom: var(--spacing-8) !important; }
+.py-12 { padding-top: var(--spacing-12) !important; padding-bottom: var(--spacing-12) !important; }
+.py-16 { padding-top: var(--spacing-16) !important; padding-bottom: var(--spacing-16) !important; }
+.py-20 { padding-top: var(--spacing-20) !important; padding-bottom: var(--spacing-20) !important; }
+
+/* Scale margins */
+.mb-1 { margin-bottom: var(--spacing-1) !important; }
+.mb-2 { margin-bottom: var(--spacing-2) !important; }
+.mb-3 { margin-bottom: var(--spacing-3) !important; }
+.mb-4 { margin-bottom: var(--spacing-4) !important; }
+.mb-6 { margin-bottom: var(--spacing-6) !important; }
+.mb-8 { margin-bottom: var(--spacing-8) !important; }
+.mb-12 { margin-bottom: var(--spacing-12) !important; }
+.mb-16 { margin-bottom: var(--spacing-16) !important; }
+
+.mt-4 { margin-top: var(--spacing-4) !important; }
+.mt-6 { margin-top: var(--spacing-6) !important; }
+.mt-8 { margin-top: var(--spacing-8) !important; }
+.mt-12 { margin-top: var(--spacing-12) !important; }
+
+/* Scale gaps */
+.gap-2 { gap: var(--spacing-2) !important; }
+.gap-3 { gap: var(--spacing-3) !important; }
+.gap-4 { gap: var(--spacing-4) !important; }
+.gap-6 { gap: var(--spacing-6) !important; }
+.gap-8 { gap: var(--spacing-8) !important; }
+.gap-12 { gap: var(--spacing-12) !important; }
+
+.gap-x-8 { column-gap: var(--spacing-8) !important; }
+.gap-x-12 { column-gap: var(--spacing-12) !important; }
+.gap-y-3 { row-gap: var(--spacing-3) !important; }
+.gap-y-6 { row-gap: var(--spacing-6) !important; }
+
+/* Scale space utilities */
+.space-x-2 > * + * { margin-left: var(--spacing-2) !important; }
+.space-x-3 > * + * { margin-left: var(--spacing-3) !important; }
+.space-x-4 > * + * { margin-left: var(--spacing-4) !important; }
+.space-x-6 > * + * { margin-left: var(--spacing-6) !important; }
+.space-x-8 > * + * { margin-left: var(--spacing-8) !important; }
+
+.space-y-3 > * + * { margin-top: var(--spacing-3) !important; }
+.space-y-4 > * + * { margin-top: var(--spacing-4) !important; }
+.space-y-6 > * + * { margin-top: var(--spacing-6) !important; }
+.space-y-8 > * + * { margin-top: var(--spacing-8) !important; }
+
+/* Scale widths and heights */
+.w-6 { width: calc(1.5rem * var(--base-scale)) !important; }
+.h-6 { height: calc(1.5rem * var(--base-scale)) !important; }
+.w-8 { width: calc(2rem * var(--base-scale)) !important; }
+.h-8 { height: calc(2rem * var(--base-scale)) !important; }
+.w-10 { width: calc(2.5rem * var(--base-scale)) !important; }
+.h-10 { height: calc(2.5rem * var(--base-scale)) !important; }
+.w-12 { width: calc(3rem * var(--base-scale)) !important; }
+.h-12 { height: calc(3rem * var(--base-scale)) !important; }
+.w-14 { width: calc(3.5rem * var(--base-scale)) !important; }
+.h-14 { height: calc(3.5rem * var(--base-scale)) !important; }
+.w-20 { width: calc(5rem * var(--base-scale)) !important; }
+.h-20 { height: calc(5rem * var(--base-scale)) !important; }
+.w-32 { width: calc(8rem * var(--base-scale)) !important; }
+.h-32 { height: calc(8rem * var(--base-scale)) !important; }
+.w-36 { width: calc(9rem * var(--base-scale)) !important; }
+.h-36 { height: calc(9rem * var(--base-scale)) !important; }
+.w-48 { width: calc(12rem * var(--base-scale)) !important; }
+.h-48 { height: calc(12rem * var(--base-scale)) !important; }
+.w-64 { width: calc(16rem * var(--base-scale)) !important; }
+.h-64 { height: calc(16rem * var(--base-scale)) !important; }
+.w-72 { width: calc(18rem * var(--base-scale)) !important; }
+.h-72 { height: calc(18rem * var(--base-scale)) !important; }
+.w-96 { width: calc(24rem * var(--base-scale)) !important; }
+.h-96 { height: calc(24rem * var(--base-scale)) !important; }
+
+/* Scale border radius */
+.rounded-sm { border-radius: var(--radius-sm) !important; }
+.rounded { border-radius: var(--radius-md) !important; }
+.rounded-md { border-radius: var(--radius-md) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.rounded-xl { border-radius: var(--radius-xl) !important; }
+.rounded-2xl { border-radius: var(--radius-2xl) !important; }
+.rounded-full { border-radius: var(--radius-full) !important; }
+
+/* Scale borders */
+.border { border-width: calc(1px * var(--base-scale)) !important; }
+.border-2 { border-width: calc(2px * var(--base-scale)) !important; }
+.border-t { border-top-width: calc(1px * var(--base-scale)) !important; }
+.border-b { border-bottom-width: calc(1px * var(--base-scale)) !important; }
+
+/* Scale shadows */
+.modern-card {
+    box-shadow: 
+        0 calc(8px * var(--base-scale)) calc(32px * var(--base-scale)) rgba(0, 0, 0, 0.3) !important;
+}
+
+.modern-card:hover {
+    box-shadow: 
+        0 calc(12px * var(--base-scale)) calc(40px * var(--base-scale)) rgba(0, 0, 0, 0.4),
+        0 0 calc(20px * var(--base-scale)) var(--glow-cyan) !important;
+}
+
+/* Container scaling */
+.container {
+    max-width: calc(1400px * var(--base-scale)) !important;
+    padding-left: calc(1.5rem * var(--base-scale)) !important;
+    padding-right: calc(1.5rem * var(--base-scale)) !important;
+}
+
+/* Hero section specific scaling */
+#hero {
+    min-height: calc(100vh * var(--base-scale));
+}
+
+/* Header scaling */
+#header {
+    height: calc(80px * var(--base-scale));
+}
+
+/* Modal scaling */
+.login-modal {
+    max-width: calc(400px * var(--base-scale)) !important;
+    padding: calc(40px * var(--base-scale)) !important;
+}
+
+.login-form input {
+    padding: calc(12px * var(--base-scale)) calc(16px * var(--base-scale)) !important;
+    font-size: var(--font-sm) !important;
+    border-radius: calc(10px * var(--base-scale)) !important;
+    margin-bottom: calc(16px * var(--base-scale)) !important;
+}
+
+/* Icon scaling */
+.fa-solid,
+.fa-brands,
+.fas,
+.fab,
+.far,
+.fa {
+    font-size: calc(1em * var(--base-scale)) !important;
+}
+
+/* Responsive breakpoints with adjusted scaling */
+@media (max-width: 480px) {
+    :root {
+        --base-scale: max(0.4, 100vw / 1920);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --base-scale: max(0.5, 100vw / 1920);
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --base-scale: max(0.6, 100vw / 1920);
+    }
+}
+
+@media (max-width: 1280px) {
+    :root {
+        --base-scale: max(0.7, 100vw / 1920);
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --base-scale: min(1.2, 100vw / 1920);
+    }
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --base-scale: min(1.5, 100vw / 1920);
+    }
+}
+
+/* Ensure backgrounds scale properly */
+section {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Scale animations */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) scale(var(--base-scale)); 
+    }
+    50% { 
+        transform: translateY(calc(-20px * var(--base-scale))) scale(var(--base-scale)); 
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) scale(var(--base-scale));
+    }
+    50% {
+        transform: translateY(calc(-10px * var(--base-scale))) scale(var(--base-scale));
+    }
+}
+
+/* Ensure images maintain aspect ratio while scaling */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Scale blur effects */
+.blur-3xl {
+    filter: blur(calc(64px * var(--base-scale))) !important;
+}
+
+.blur-2xl {
+    filter: blur(calc(40px * var(--base-scale))) !important;
+}
+
+.blur-xl {
+    filter: blur(calc(24px * var(--base-scale))) !important;
+}
+
+/* Ensure minimum readability on very small screens */
+@media (max-width: 360px) {
+    :root {
+        --base-scale: 0.35;
+    }
+}
