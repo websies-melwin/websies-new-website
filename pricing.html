@@ -6,12 +6,18 @@
     <title>Pricing - Websies | Simple, Transparent Pricing</title>
     <meta name="description" content="£47/month. No contracts. Cancel anytime. See your website demo before paying anything.">
     
+    <!-- Scripts and Styles - Matching Home Page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="auth.js"></script>
+    <script src="header-loader.js"></script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -24,10 +30,6 @@
             }
         }
     </script>
-    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="auth.js"></script>
-    <script src="header-loader.js"></script>
     
     <style>
         :root {
@@ -45,10 +47,6 @@
             --glow-blue: rgba(10, 132, 255, 0.15);
         }
         
-        html, body {
-            min-height: 100vh;
-        }
-        
         body { 
             background: linear-gradient(135deg, var(--bg-primary) 0%, #1A1F2E 50%, #13171F 100%);
             background-attachment: fixed;
@@ -63,7 +61,7 @@
         .hover-pop:hover { transform: translateY(-8px) scale(1.02); }
         .neon-border { border: 2px solid var(--accent-cyan); box-shadow: 0 0 15px var(--border-accent); }
         
-        /* Modern card styling */
+        /* Modern card styling - matching home page */
         .modern-card {
             background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
             border: 1px solid var(--border-subtle);
@@ -92,264 +90,89 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-cyan), transparent);
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue), var(--accent-cyan));
+            border-radius: 20px;
             opacity: 0;
-            z-index: -1;
             transition: opacity 0.3s ease;
+            z-index: -1;
         }
         
         .pricing-card:hover::before {
-            opacity: 0.3;
-            animation: rotate 3s linear infinite;
+            opacity: 0.5;
         }
         
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px var(--glow-cyan); } 50% { box-shadow: 0 0 40px var(--glow-cyan), 0 0 60px var(--glow-blue); } }
-        
-        .float-animation { animation: float 3s ease-in-out infinite; }
-        .pulse-glow-animation { animation: pulse-glow 2s ease-in-out infinite; }
-
-        
-        /* Modal styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-overlay.active {
-            display: flex;
-        }
-        
-        .login-modal {
-            background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 40px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .login-form input {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+        /* Match home page button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
             color: white;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-        }
-        
-        .login-form input:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.1);
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
         
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 65, 108, 0.3);
         }
         
-        .user-menu {
-            display: none;
-            position: relative;
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-cyan);
+            padding: 12px 32px;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
         
-        .user-menu.active {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
             color: var(--bg-primary);
-            cursor: pointer;
+            transform: scale(1.05);
         }
-        
-        .user-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 12px;
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 8px;
-            min-width: 200px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .user-dropdown.active {
-            display: block;
-        }
-        
-        .dropdown-item {
-            padding: 10px 16px;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
-            font-size: 14px;
-        }
-        
-        .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dropdown-divider {
-            height: 1px;
-            background: var(--border-subtle);
-            margin: 8px 0;
-        }
-        
-        /* Unique pricing page animations */
-        .price-float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        .price-float:nth-child(2) {
-            animation-delay: 1s;
-        }
-        
-        .price-float:nth-child(3) {
-            animation-delay: 2s;
-        }
-        
-        /* Check mark animation */
-        @keyframes checkmark {
-            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-            50% { transform: scale(1.2) rotate(-45deg); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-        
-        .check-animation {
-            animation: checkmark 0.5s ease forwards;
-        }
-        
-        /* Enhanced glossy header effect v2.0 - matching homepage exactly */
-
     </style>
-    
-    <script>tailwind.config = {
-  "theme": {
-    "extend": {
-      "fontFamily": {
-        "montserrat": ["Montserrat", "sans-serif"],
-        "inter": ["Inter", "sans-serif"],
-        "sans": ["Inter", "sans-serif"]
-      },
-      "colors": {
-        "cyan-400": "#FF416C",
-        "blue-500": "#FF4B2B",
-        "accent": "#00F2FE",
-        "dark": "#1A1A1A"
-      }
-    }
-  }
-};</script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
-    
-
 </head>
 <body class="font-sans" style="background: linear-gradient(135deg, #13171F 0%, #1A1F2E 50%, #13171F 100%); background-attachment: fixed;">
 
 <!-- Global Header Placeholder -->
 <div id="header-placeholder"></div>
 
-<!-- Hero Section (Unique for pricing page) -->
-<section class="relative pb-20 overflow-hidden" style="padding-top: 80px;">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 opacity-20">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-[var(--accent-cyan)] rounded-full filter blur-[128px]"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-[var(--accent-blue)] rounded-full filter blur-[128px]"></div>
+<!-- Hero Section - Matching Home Page Style -->
+<section class="relative min-h-[60vh] overflow-hidden" style="padding-top: 80px;">
+    <!-- Background Glow Effects -->
+    <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-cyan-500/20 to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-transparent rounded-full blur-3xl"></div>
     </div>
     
-    <div class="container mx-auto px-4 sm:px-6 relative z-10">
-        <div class="text-center max-w-4xl mx-auto mb-16">
+    <div class="container mx-auto px-4 sm:px-6 relative z-10 py-20">
+        <div class="text-center max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold text-white mb-6 leading-tight">
                 Simple, <span class="text-gradient">Transparent</span> Pricing
             </h1>
-            <p class="text-lg md:text-xl text-[var(--text-secondary)] mb-12">
-                No hidden fees. No contracts. Cancel anytime.
+            <p class="text-lg md:text-xl text-white/90 mb-12 max-w-3xl mx-auto font-inter">
+                No hidden fees. No contracts. Cancel anytime.<br>
+                See your website demo before paying anything.
             </p>
-            <div class="flex flex-wrap justify-center gap-12 text-center">
-                <div class="flex flex-col">
-                    <span class="text-4xl md:text-5xl font-bold text-white">7</span>
-                    <span class="text-base md:text-lg text-[var(--text-muted)]">Day Delivery</span>
+            
+            <!-- Key Value Props - Like Home Page -->
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-montserrat font-bold text-white mb-2">7</div>
+                    <div class="text-white/60 font-inter">Days to Launch</div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-4xl md:text-5xl font-bold text-white">£47</span>
-                    <span class="text-base md:text-lg text-[var(--text-muted)]">/month</span>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-montserrat font-bold text-gradient mb-2">£47</div>
+                    <div class="text-white/60 font-inter">Per Month</div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-4xl md:text-5xl font-bold text-white">£0</span>
-                    <span class="text-base md:text-lg text-[var(--text-muted)]">Upfront</span>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-montserrat font-bold text-white mb-2">£0</div>
+                    <div class="text-white/60 font-inter">Upfront Cost</div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-4xl md:text-5xl font-bold text-white">100%</span>
-                    <span class="text-base md:text-lg text-[var(--text-muted)]">Custom</span>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-montserrat font-bold text-accent mb-2">100%</div>
+                    <div class="text-white/60 font-inter">Custom Design</div>
                 </div>
             </div>
         </div>
@@ -365,35 +188,35 @@
             <div class="modern-card pricing-card p-8 relative">
                 <div class="mb-6">
                     <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Starter</h3>
-                    <p class="text-[var(--text-muted)] text-sm">Perfect for small businesses</p>
+                    <p class="text-white/60 text-sm">Perfect for small businesses</p>
                 </div>
                 <div class="mb-8">
-                    <span class="text-4xl font-bold text-white">£47</span>
-                    <span class="text-[var(--text-secondary)]">/month</span>
+                    <span class="text-4xl font-montserrat font-bold text-white">£47</span>
+                    <span class="text-white/60">/month</span>
                 </div>
                 <ul class="space-y-4 mb-8">
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">5-page custom website</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">5-page custom website</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Mobile responsive design</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Mobile responsive design</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Basic SEO optimization</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Basic SEO optimization</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">SSL certificate included</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">SSL certificate included</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Monthly updates included</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Monthly updates included</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 rounded-xl border border-[var(--accent-cyan)] text-[var(--accent-cyan)] font-inter font-semibold hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300">
+                <button class="btn-secondary w-full">
                     Get Started
                 </button>
             </div>
@@ -401,43 +224,43 @@
             <!-- Professional Plan (Popular) -->
             <div class="modern-card pricing-card p-8 relative transform lg:scale-105 neon-border">
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span class="gradient-accent text-white px-4 py-1 rounded-full text-xs font-semibold">MOST POPULAR</span>
+                    <span class="gradient-accent text-white px-6 py-2 rounded-full text-xs font-semibold uppercase">Most Popular</span>
                 </div>
                 <div class="mb-6">
                     <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Professional</h3>
-                    <p class="text-[var(--text-muted)] text-sm">For growing businesses</p>
+                    <p class="text-white/60 text-sm">For growing businesses</p>
                 </div>
                 <div class="mb-8">
-                    <span class="text-4xl font-bold text-gradient">£97</span>
-                    <span class="text-[var(--text-secondary)]">/month</span>
+                    <span class="text-4xl font-montserrat font-bold text-gradient">£97</span>
+                    <span class="text-white/60">/month</span>
                 </div>
                 <ul class="space-y-4 mb-8">
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">10-page custom website</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">10-page custom website</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Advanced animations</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Advanced animations</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">E-commerce ready</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">E-commerce ready</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Advanced SEO & Analytics</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Advanced SEO & Analytics</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Weekly updates & priority support</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Weekly updates & priority support</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Custom integrations</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Custom integrations</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 rounded-xl gradient-accent text-white font-montserrat font-semibold hover:scale-105 hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] transition-all duration-300">
+                <button class="btn-primary w-full">
                     Get Started
                 </button>
             </div>
@@ -446,34 +269,34 @@
             <div class="modern-card pricing-card p-8 relative">
                 <div class="mb-6">
                     <h3 class="text-2xl font-montserrat font-bold text-white mb-2">Enterprise</h3>
-                    <p class="text-[var(--text-muted)] text-sm">For large organizations</p>
+                    <p class="text-white/60 text-sm">For large organizations</p>
                 </div>
                 <div class="mb-8">
-                    <span class="text-4xl font-bold text-white">Custom</span>
+                    <span class="text-4xl font-montserrat font-bold text-white">Custom</span>
                 </div>
                 <ul class="space-y-4 mb-8">
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Unlimited pages</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Unlimited pages</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Custom development</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Custom development</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">Dedicated account manager</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">Dedicated account manager</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">24/7 priority support</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">24/7 priority support</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-[var(--accent-cyan)] mt-1"></i>
-                        <span class="text-[var(--text-secondary)] text-sm">SLA guarantee</span>
+                        <i class="fas fa-check text-accent mt-1"></i>
+                        <span class="text-white/70">SLA guarantee</span>
                     </li>
                 </ul>
-                <button class="w-full py-3 rounded-xl border border-[var(--accent-cyan)] text-[var(--accent-cyan)] font-inter font-semibold hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300">
+                <button class="btn-secondary w-full">
                     Contact Sales
                 </button>
             </div>
@@ -481,161 +304,79 @@
     </div>
 </section>
 
-<!-- Features Comparison -->
+<!-- Features Comparison - Styled like Home Page Benefits -->
 <section class="py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-12">
-            <h2 class="text-4xl font-montserrat font-bold text-white mb-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4">
                 Everything You Need to <span class="text-gradient">Succeed Online</span>
             </h2>
-            <p class="text-[var(--text-secondary)] max-w-2xl mx-auto">
-                All plans include our core features. Choose the plan that fits your ambition.
+            <p class="text-lg text-white/70 max-w-2xl mx-auto">
+                All plans include our core features. Choose based on your business size and needs.
             </p>
         </div>
         
-        <div class="modern-card p-8 max-w-4xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-montserrat font-semibold text-white mb-6">All Plans Include</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[var(--glow-cyan)] flex items-center justify-center">
-                                <i class="fas fa-check text-[var(--accent-cyan)] text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Free domain setup assistance</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[var(--glow-cyan)] flex items-center justify-center">
-                                <i class="fas fa-check text-[var(--accent-cyan)] text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Blazing fast hosting</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[var(--glow-cyan)] flex items-center justify-center">
-                                <i class="fas fa-check text-[var(--accent-cyan)] text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">SSL security certificate</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[var(--glow-cyan)] flex items-center justify-center">
-                                <i class="fas fa-check text-[var(--accent-cyan)] text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Mobile responsive design</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[var(--glow-cyan)] flex items-center justify-center">
-                                <i class="fas fa-check text-[var(--accent-cyan)] text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">SEO optimization</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-montserrat font-semibold text-white mb-6">Premium Features</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] flex items-center justify-center">
-                                <i class="fas fa-star text-white text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Custom animations & interactions</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] flex items-center justify-center">
-                                <i class="fas fa-star text-white text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">E-commerce functionality</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] flex items-center justify-center">
-                                <i class="fas fa-star text-white text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Advanced analytics dashboard</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] flex items-center justify-center">
-                                <i class="fas fa-star text-white text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">Priority support & updates</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] flex items-center justify-center">
-                                <i class="fas fa-star text-white text-xs"></i>
-                            </div>
-                            <span class="text-[var(--text-secondary)] text-sm">API integrations</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="py-16 md:py-24">
-    <div class="container mx-auto px-4 sm:px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-montserrat font-bold text-white mb-4">
-                Trusted by <span class="text-gradient">500+ Businesses</span>
-            </h2>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div class="modern-card p-6">
-                <div class="flex gap-1 mb-4">
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                </div>
-                <p class="text-[var(--text-secondary)] text-sm mb-4">
-                    "Websies delivered our site in just 5 days! The design is stunning and our conversions have doubled."
-                </p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#FF416C] to-[#FF4B2B]"></div>
-                    <div>
-                        <p class="text-white text-sm font-semibold">Sarah Chen</p>
-                        <p class="text-[var(--text-muted)] text-xs">Founder, TechStart</p>
+        <div class="max-w-5xl mx-auto">
+            <div class="modern-card p-8 md:p-12">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-rocket text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">Lightning Fast</h4>
+                            <p class="text-white/60 text-sm">Optimized for speed with 90+ PageSpeed scores</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="modern-card p-6">
-                <div class="flex gap-1 mb-4">
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                </div>
-                <p class="text-[var(--text-secondary)] text-sm mb-4">
-                    "The monthly model is perfect for our budget. No huge upfront costs and we can cancel anytime."
-                </p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-blue)]"></div>
-                    <div>
-                        <p class="text-white text-sm font-semibold">Marcus Johnson</p>
-                        <p class="text-[var(--text-muted)] text-xs">CEO, Local Fitness</p>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-mobile-alt text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">Mobile First</h4>
+                            <p class="text-white/60 text-sm">Perfectly responsive on all devices</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="modern-card p-6">
-                <div class="flex gap-1 mb-4">
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                    <i class="fas fa-star text-yellow-500 text-sm"></i>
-                </div>
-                <p class="text-[var(--text-secondary)] text-sm mb-4">
-                    "Outstanding service! They handle everything from hosting to updates. It's truly hands-off."
-                </p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
-                    <div>
-                        <p class="text-white text-sm font-semibold">Emma Williams</p>
-                        <p class="text-[var(--text-muted)] text-xs">Owner, Boutique Store</p>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-shield-alt text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">Secure & Reliable</h4>
+                            <p class="text-white/60 text-sm">SSL certificates and daily backups</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-search text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">SEO Optimized</h4>
+                            <p class="text-white/60 text-sm">Built-in SEO best practices</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-chart-line text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">Analytics Ready</h4>
+                            <p class="text-white/60 text-sm">Google Analytics integration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-headset text-xl text-accent"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-montserrat font-bold text-white mb-2">Ongoing Support</h4>
+                            <p class="text-white/60 text-sm">Updates and maintenance included</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -647,249 +388,128 @@
 <section class="py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-12">
-            <h2 class="text-4xl font-montserrat font-bold text-white mb-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4">
                 Frequently Asked <span class="text-gradient">Questions</span>
             </h2>
         </div>
         
-        <div class="max-w-3xl mx-auto space-y-4">
+        <div class="max-w-3xl mx-auto space-y-6">
             <div class="modern-card p-6">
-                <button class="w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
-                    <span class="text-white font-semibold">Can I really cancel anytime?</span>
-                    <i class="fas fa-chevron-down text-[var(--accent-cyan)] transition-transform"></i>
-                </button>
-                <div class="hidden mt-4 text-[var(--text-secondary)] text-sm">
-                    Yes! We believe in earning your business every month. Cancel with 30 days notice and we'll even help you export your website.
-                </div>
+                <h3 class="font-montserrat font-bold text-white mb-3">Can I cancel anytime?</h3>
+                <p class="text-white/70">Yes! No contracts, no cancellation fees. Cancel anytime with just one click.</p>
             </div>
             
             <div class="modern-card p-6">
-                <button class="w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
-                    <span class="text-white font-semibold">What's included in the monthly fee?</span>
-                    <i class="fas fa-chevron-down text-[var(--accent-cyan)] transition-transform"></i>
-                </button>
-                <div class="hidden mt-4 text-[var(--text-secondary)] text-sm">
-                    Everything! Website design, development, hosting, SSL certificate, maintenance, updates, and support. The only thing not included is your domain name.
-                </div>
+                <h3 class="font-montserrat font-bold text-white mb-3">Do I own my website?</h3>
+                <p class="text-white/70">Yes, you own all the content and can export it anytime. We handle the technical hosting and maintenance.</p>
             </div>
             
             <div class="modern-card p-6">
-                <button class="w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
-                    <span class="text-white font-semibold">How fast can you deliver?</span>
-                    <i class="fas fa-chevron-down text-[var(--accent-cyan)] transition-transform"></i>
-                </button>
-                <div class="hidden mt-4 text-[var(--text-secondary)] text-sm">
-                    We guarantee delivery within 7 business days for standard plans. Most sites are actually delivered in 5 days. Enterprise projects may take longer depending on complexity.
-                </div>
+                <h3 class="font-montserrat font-bold text-white mb-3">What if I need changes after launch?</h3>
+                <p class="text-white/70">All plans include monthly updates. Need more frequent changes? Our Professional plan includes weekly updates.</p>
             </div>
             
             <div class="modern-card p-6">
-                <button class="w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
-                    <span class="text-white font-semibold">Do I own my website?</span>
-                    <i class="fas fa-chevron-down text-[var(--accent-cyan)] transition-transform"></i>
-                </button>
-                <div class="hidden mt-4 text-[var(--text-secondary)] text-sm">
-                    Yes! You own all the code and content. If you decide to leave, we'll provide you with all files and even help with the transition.
-                </div>
+                <h3 class="font-montserrat font-bold text-white mb-3">Do you offer refunds?</h3>
+                <p class="text-white/70">We offer a 30-day money-back guarantee. If you're not happy, we'll refund your first month.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- CTA Section -->
+<!-- CTA Section - Matching Home Page Style -->
 <section class="py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="modern-card p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
-            <!-- Background decoration -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[var(--accent-cyan)] to-[var(--accent-blue)] opacity-10 rounded-full filter blur-3xl"></div>
-            
-            <h2 class="text-4xl font-montserrat font-bold text-white mb-4 relative z-10">
-                Ready to Get Started?
-            </h2>
-            <p class="text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto relative z-10">
-                Join 500+ businesses that trust Websies for their online presence. Get your website live in 7 days or less.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                <button class="gradient-accent text-white px-8 py-4 rounded-xl font-montserrat font-semibold hover:scale-105 hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] transition-all duration-300 inline-flex items-center gap-2">
-                    <i class="fas fa-rocket"></i>
-                    Start Your Free Demo
-                </button>
-                <button class="border border-[var(--accent-cyan)] text-[var(--accent-cyan)] px-8 py-4 rounded-xl font-inter font-semibold hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300">
-                    Schedule a Call
-                </button>
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/30 to-transparent rounded-full blur-3xl"></div>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-white mb-6">
+                    Ready to Get <span class="text-gradient">Started?</span>
+                </h2>
+                <p class="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
+                    Join 500+ businesses that trust Websies for their online presence. 
+                    Get your custom website in just 7 days.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-primary">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Get Your FREE Demo
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-calendar mr-2"></i>
+                        Book a Call
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer (Exact copy from home page) -->
+<!-- Footer - Will be loaded by footer-loader.js -->
 <footer id="footer" class="relative bg-[var(--bg-primary)]">
     <div class="container mx-auto px-4 sm:px-6 py-16">
-        <div class="">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
-                <div class="lg:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <h3 class="text-3xl font-montserrat font-bold text-white mr-4">Websies</h3>
-                        <div class="text-[var(--accent-cyan)] animate-pulse">✨</div>
-                    </div>
-                    <p class="text-[var(--text-muted)] font-inter text-base mb-8 max-w-lg leading-relaxed">
-                        Revolutionary web design for modern entrepreneurs. Beautiful websites, delivered in 7 days, for just £47/month.
-                    </p>
-                    <div class="flex space-x-3">
-                        <span class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300 cursor-pointer group">
-                            <i class="fa-brands fa-twitter text-[var(--text-muted)] group-hover:text-[var(--bg-primary)]"></i>
-                        </span>
-                        <span class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300 cursor-pointer group">
-                            <i class="fa-brands fa-instagram text-[var(--text-muted)] group-hover:text-[var(--bg-primary)]"></i>
-                        </span>
-                        <span class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300 cursor-pointer group">
-                            <i class="fa-brands fa-linkedin text-[var(--text-muted)] group-hover:text-[var(--bg-primary)]"></i>
-                        </span>
-                        <span class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300 cursor-pointer group">
-                            <i class="fa-brands fa-youtube text-[var(--text-muted)] group-hover:text-[var(--bg-primary)]"></i>
-                        </span>
-                    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl font-montserrat font-bold text-white">Websies</span>
                 </div>
-                
-                <div>
-                    <h4 class="text-[var(--text-primary)] font-montserrat font-bold mb-6 text-sm uppercase tracking-wider">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="pricing.html" class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Pricing
-                        </a></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Portfolio
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Referral Program
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            About Us
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Contact
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Client Portal
-                        </span></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-[var(--text-primary)] font-montserrat font-bold mb-6 text-sm uppercase tracking-wider">Support</h4>
-                    <ul class="space-y-3">
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Help Center
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Live Chat
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Request Updates
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Terms of Service
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Privacy Policy
-                        </span></li>
-                        <li><span class="text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-inter text-sm cursor-pointer flex items-center group">
-                            <span class="w-1 h-1 bg-[var(--accent-cyan)] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                            Cookie Policy
-                        </span></li>
-                    </ul>
-                </div>
-            </div>
-        
-        <div class="border-t border-white/10 pt-8 mt-12">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-[var(--text-muted)] font-inter text-xs">
-                    © 2024 Websies. All rights reserved. Built with passion for modern entrepreneurs.
-                </div>
-                <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-2">
-                        <div class="w-1.5 h-1.5 bg-[var(--accent-cyan)] rounded-full animate-pulse"></div>
-                        <span class="text-[var(--text-muted)] font-inter text-xs">500+ Happy Clients</span>
-                    </div>
-                    <a href="pricing.html" class="text-[var(--accent-cyan)] px-5 py-2 border border-[var(--accent-cyan)] rounded-lg font-inter font-medium text-sm hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300 inline-flex items-center gap-2">
-                        <i class="fas fa-rocket text-xs"></i>
-                        Start Free Demo
+                <p class="text-white/60 mb-6 max-w-md">
+                    Professional websites for modern businesses. Zero upfront fees, 
+                    launch in 7 days, cancel anytime.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                        <i class="fab fa-twitter text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                        <i class="fab fa-linkedin text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                        <i class="fab fa-instagram text-white"></i>
                     </a>
                 </div>
             </div>
+            
+            <div>
+                <h4 class="font-montserrat font-bold text-white mb-4">Quick Links</h4>
+                <ul class="space-y-3">
+                    <li><a href="index.html" class="text-white/60 hover:text-accent transition-colors">Home</a></li>
+                    <li><a href="index.html#process" class="text-white/60 hover:text-accent transition-colors">Process</a></li>
+                    <li><a href="pricing.html" class="text-white/60 hover:text-accent transition-colors">Pricing</a></li>
+                    <li><a href="index.html#testimonials" class="text-white/60 hover:text-accent transition-colors">Reviews</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-montserrat font-bold text-white mb-4">Contact</h4>
+                <ul class="space-y-3">
+                    <li class="text-white/60">
+                        <i class="fas fa-envelope mr-2 text-accent"></i>
+                        hello@websies.com
+                    </li>
+                    <li class="text-white/60">
+                        <i class="fas fa-phone mr-2 text-accent"></i>
+                        +44 20 1234 5678
+                    </li>
+                    <li class="text-white/60">
+                        <i class="fas fa-clock mr-2 text-accent"></i>
+                        Mon-Fri 9am-6pm GMT
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-white/10 pt-8 text-center">
+            <p class="text-white/40 text-sm">
+                © 2024 Websies. All rights reserved. | 
+                <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a> | 
+                <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+            </p>
         </div>
     </div>
 </footer>
-
-<script>
-// Mobile menu functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-});
-
-// FAQ Toggle
-function toggleFAQ(button) {
-    const content = button.nextElementSibling;
-    const icon = button.querySelector('i');
-    
-    content.classList.toggle('hidden');
-    icon.classList.toggle('rotate-180');
-}
-
-// Login Modal Functions
-function openLoginModal() {
-    document.getElementById('loginModal').classList.add('active');
-}
-
-function closeLoginModal() {
-    document.getElementById('loginModal').classList.remove('active');
-}
-
-function handleLogin(event) {
-    event.preventDefault();
-    // Add login logic here
-    console.log('Login submitted');
-    closeLoginModal();
-}
-
-function switchToSignup() {
-    // Add signup modal logic here
-    console.log('Switch to signup');
-}
-
-// User menu functions
-function toggleUserDropdown() {
-    document.getElementById('userDropdown').classList.toggle('active');
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const userMenu = document.getElementById('userMenu');
-    const userDropdown = document.getElementById('userDropdown');
-    
-    if (userMenu && !userMenu.contains(event.target)) {
-        userDropdown?.classList.remove('active');
-    }
-});
-</script>
 
 </body>
 </html>
