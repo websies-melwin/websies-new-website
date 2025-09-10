@@ -377,7 +377,7 @@
 <!-- Global Header Placeholder -->
 <div id="header-placeholder"></div>
 
-<section id="hero" class="relative min-h-screen overflow-hidden" style="padding-top: 80px;">
+<section id="hero" class="relative min-h-screen overflow-hidden border-b border-white/10" style="padding-top: 80px;">
     <!-- Video Background -->
     <div class="absolute inset-0 w-full h-full">
         <!-- Primary Video Element -->
@@ -492,7 +492,7 @@
     </div>
 </section>
 
-<section id="benefits" class="py-16 md:py-20 section-modern relative overflow-hidden">
+<section id="benefits" class="py-16 md:py-20 relative overflow-hidden bg-gradient-to-b from-transparent via-[var(--bg-surface)]/20 to-transparent border-b border-white/10">
     <!-- Dynamic background gradient -->
     <div class="absolute inset-0">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
@@ -744,7 +744,11 @@
     </div>
 </section>
 
-<section id="process" class="py-16 md:py-20 section-modern relative overflow-hidden">
+<section id="process" class="py-16 md:py-20 relative overflow-hidden border-b border-white/10" style="background: linear-gradient(135deg, rgba(60, 60, 65, 0.2) 0%, rgba(50, 50, 55, 0.25) 50%, rgba(55, 55, 60, 0.2) 100%)">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <div class="container mx-auto px-4 sm:px-6 relative">
         <div class="text-center mb-12 px-4">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4">
@@ -867,7 +871,11 @@
     </div>
 </section>
 
-<section id="who-its-for" class="py-16 md:py-20 section-elevated">
+<section id="who-its-for" class="py-16 md:py-20 section-modern relative overflow-hidden border-b border-white/10">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/4 right-20 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 left-20 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-12 md:mb-16">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4 md:mb-6">
@@ -1010,10 +1018,10 @@
     </div>
 </section>
 
-<section id="testimonials" class="py-16 md:py-20 section-modern relative overflow-hidden">
+<section id="testimonials" class="py-16 md:py-20 relative overflow-hidden border-b border-white/10" style="background: linear-gradient(135deg, rgba(60, 60, 65, 0.2) 0%, rgba(50, 50, 55, 0.25) 50%, rgba(55, 55, 60, 0.2) 100%)">
     <div class="absolute inset-0">
-        <div class="absolute top-1/3 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/3 right-10 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
     </div>
     
     <div class="container mx-auto px-4 sm:px-6 relative">
@@ -1175,7 +1183,11 @@
     </div>
 </section>
 
-<section id="comparison" class="py-16 md:py-20 section-modern">
+<section id="comparison" class="py-16 md:py-20 section-modern relative overflow-hidden border-b border-white/10">
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-1/3 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-1/3 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-12 md:mb-16">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4 md:mb-6">
@@ -1186,8 +1198,8 @@
             </p>
         </div>
         
-        <!-- Clean Comparison Table -->
-        <div class="max-w-5xl mx-auto mb-12">
+        <!-- Minimal Comparison Table with DIY Platforms -->
+        <div class="max-w-6xl mx-auto mb-12">
             <div class="modern-card overflow-hidden">
                 <table class="w-full">
                     <thead>
@@ -1197,12 +1209,17 @@
                             </th>
                             <th class="p-6 text-center">
                                 <div class="inline-flex items-center space-x-2">
-                                    <i class="fa-solid fa-rocket text-accent"></i>
                                     <span class="font-montserrat font-bold text-white">Websies</span>
                                 </div>
+                                <div class="text-accent text-xs font-inter mt-1">Done-For-You</div>
                             </th>
                             <th class="p-6 text-center">
-                                <span class="font-montserrat text-white/60">Traditional Agencies</span>
+                                <span class="font-montserrat text-white/70">DIY Platforms</span>
+                                <div class="text-white/40 text-xs font-inter mt-1">Wix, Squarespace</div>
+                            </th>
+                            <th class="p-6 text-center">
+                                <span class="font-montserrat text-white/60">Agencies</span>
+                                <div class="text-white/40 text-xs font-inter mt-1">Traditional</div>
                             </th>
                         </tr>
                     </thead>
@@ -1211,14 +1228,17 @@
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-clock text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Delivery Time</span>
+                                    <span class="text-white/80 font-inter">Time to Launch</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
                                 <span class="text-accent font-semibold">7 Days</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">4-12 Weeks</span>
+                                <span class="text-white/50">30-60 Days</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">8-16 Weeks</span>
                             </td>
                         </tr>
                         
@@ -1226,29 +1246,55 @@
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-pound-sign text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Starting Price</span>
+                                    <span class="text-white/80 font-inter">Your Expense</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
                                 <span class="text-accent font-semibold">£47/month</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">£3,000 - £15,000</span>
+                                <span class="text-white/50">£15-25/month</span>
+                                <div class="text-white/30 text-xs mt-1">+ Your time</div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">£2,000-10,000</span>
+                                <div class="text-white/30 text-xs mt-1">+ £30-50/month maintenance</div>
                             </td>
                         </tr>
                         
                         <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
-                                    <i class="fa-solid fa-credit-card text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Upfront Payment</span>
+                                    <i class="fa-solid fa-user-clock text-white/40 text-sm"></i>
+                                    <span class="text-white/80 font-inter">Your Time Required</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-accent font-semibold">£0</span>
+                                <span class="text-accent font-semibold">30 mins</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">50-100%</span>
+                                <span class="text-white/50">100+ hours</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">20+ hours</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                            <td class="p-6">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fa-solid fa-palette text-white/40 text-sm"></i>
+                                    <span class="text-white/80 font-inter">Design Quality</span>
+                                </div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-accent font-semibold">Professional</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">Template-based</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">Professional</span>
                             </td>
                         </tr>
                         
@@ -1256,44 +1302,54 @@
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
                                     <i class="fa-solid fa-sync text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Updates</span>
+                                    <span class="text-white/80 font-inter">Updates & Changes</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
                                 <span class="text-accent font-semibold">Unlimited</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">Extra Cost</span>
+                                <span class="text-white/50">DIY Forever</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">£100-500/hour</span>
                             </td>
                         </tr>
                         
                         <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
-                                    <i class="fa-solid fa-file-contract text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Contract Required</span>
+                                    <i class="fa-solid fa-headset text-white/40 text-sm"></i>
+                                    <span class="text-white/80 font-inter">Support</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-accent font-semibold">No</span>
+                                <span class="text-accent font-semibold">24/7 Direct</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">Yes</span>
+                                <span class="text-white/50">Forums Only</span>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">Business Hours</span>
                             </td>
                         </tr>
                         
                         <tr class="hover:bg-white/5 transition-colors">
                             <td class="p-6">
                                 <div class="flex items-center space-x-3">
-                                    <i class="fa-solid fa-times-circle text-white/40 text-sm"></i>
-                                    <span class="text-white/80 font-inter">Cancel Anytime</span>
+                                    <i class="fa-solid fa-check-circle text-white/40 text-sm"></i>
+                                    <span class="text-white/80 font-inter">Success Rate</span>
                                 </div>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-accent font-semibold">Yes</span>
+                                <span class="text-accent font-semibold">98%</span>
                             </td>
                             <td class="p-6 text-center">
-                                <span class="text-white/50">No</span>
+                                <span class="text-white/50">~30%</span>
+                                <div class="text-white/30 text-xs mt-1">Most give up</div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <span class="text-white/50">~70%</span>
                             </td>
                         </tr>
                     </tbody>
@@ -1304,10 +1360,10 @@
         <!-- Value Proposition -->
         <div class="text-center max-w-3xl mx-auto mb-12">
             <p class="text-2xl font-montserrat font-bold text-white mb-4">
-                Save <span class="text-accent">£2,953+</span> in your first year
+                The smart choice is clear: <span class="text-accent">Professional results</span> without the professional price tag
             </p>
             <p class="text-white/70 font-inter">
-                Get the same quality website for 93% less. No compromises, just smart business.
+                Skip the learning curve, avoid agency fees, and get your business online in just 7 days.
             </p>
         </div>
         
@@ -1324,7 +1380,11 @@
     </div>
 </section>
 
-<section id="pricing" class="py-16 md:py-20 section-elevated">
+<section id="pricing" class="py-16 md:py-20 relative overflow-hidden border-b border-white/10" style="background: linear-gradient(135deg, rgba(60, 60, 65, 0.2) 0%, rgba(50, 50, 55, 0.25) 50%, rgba(55, 55, 60, 0.2) 100%)">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <div class="container mx-auto px-6">
         <div class="text-center mb-12 md:mb-16">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4 md:mb-6">
@@ -1465,23 +1525,27 @@
         <div class="max-w-3xl mx-auto">
             <div class="flex flex-wrap justify-center gap-x-12 gap-y-6">
                 <div class="text-center">
-                    <div class="text-3xl font-montserrat font-bold text-white mb-1">£8,000</div>
-                    <div class="text-white/60 font-inter text-sm">Average agency cost</div>
+                    <div class="text-3xl font-montserrat font-bold text-white mb-1">7</div>
+                    <div class="text-white/60 font-inter text-sm">Days to launch</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-montserrat font-bold text-accent mb-1">£564</div>
-                    <div class="text-white/60 font-inter text-sm">Websies yearly</div>
+                    <div class="text-3xl font-montserrat font-bold text-accent mb-1">£47</div>
+                    <div class="text-white/60 font-inter text-sm">Per month</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-montserrat font-bold text-green-400 mb-1">93%</div>
-                    <div class="text-white/60 font-inter text-sm">You save</div>
+                    <div class="text-3xl font-montserrat font-bold text-green-400 mb-1">500+</div>
+                    <div class="text-white/60 font-inter text-sm">Happy clients</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="faq" class="py-16 md:py-20 section-modern relative overflow-hidden">
+<section id="faq" class="py-16 md:py-20 section-modern relative overflow-hidden border-b border-white/10">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-20 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <div class="container mx-auto px-4 sm:px-6 relative">
         <div class="text-center mb-12 px-4">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4">
@@ -1570,14 +1634,18 @@
         
         <div class="text-center mt-12">
             <p class="text-white/60 font-inter text-sm mb-4">Still have questions?</p>
-            <a href="#contact" class="text-accent hover:text-white font-inter font-medium transition-colors">
-                Contact us directly →
+            <a href="mailto:hello@websies.co.uk" class="text-accent hover:text-white font-inter font-medium transition-colors">
+                Email us directly →
             </a>
         </div>
     </div>
 </section>
 
-<section id="referral" class="relative overflow-hidden py-16 md:py-20 section-modern">
+<section id="referral" class="relative overflow-hidden py-16 md:py-20 border-b border-white/10" style="background: linear-gradient(135deg, rgba(60, 60, 65, 0.2) 0%, rgba(50, 50, 55, 0.25) 50%, rgba(55, 55, 60, 0.2) 100%)">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-r from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
     <!-- Subtle animated background -->
     <div class="absolute inset-0 opacity-20">
         <div class="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-yellow-500/20 to-transparent rounded-full blur-3xl"></div>
@@ -1663,135 +1731,7 @@
     </div>
 </section>
 
-<section id="contact" class="py-16 md:py-20 section-modern relative overflow-hidden">
-    <div class="container mx-auto px-4 sm:px-6 relative">
-        <div class="text-center mb-12 px-4">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4">
-                Get In <span class="text-gradient">Touch</span>
-            </h2>
-            <p class="text-base md:text-lg text-white/70 max-w-2xl mx-auto font-inter">
-                Have questions? We're here to help you succeed online.
-            </p>
-        </div>
-        
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-            <!-- Contact Information -->
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-xl font-montserrat font-bold text-white mb-6">Let's Start a Conversation</h3>
-                    <p class="text-white/70 font-inter mb-8">
-                        Whether you're ready to get started or just exploring options, we'd love to hear from you. 
-                        No pressure, no spam - just honest advice about your web presence.
-                    </p>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-accent/20 to-cyan-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-envelope text-accent"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Email Us</h4>
-                            <a href="mailto:hello@websies.co.uk" class="text-white/70 hover:text-accent font-inter text-sm transition-colors">hello@websies.co.uk</a>
-                            <p class="text-white/50 font-inter text-xs mt-1">We reply within 24 hours</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-green-500/20 to-emerald-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-phone text-green-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Call Us</h4>
-                            <a href="tel:+447123456789" class="text-white/70 hover:text-green-400 font-inter text-sm transition-colors">+44 7123 456789</a>
-                            <p class="text-white/50 font-inter text-xs mt-1">Mon-Fri, 9am-6pm GMT</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500/20 to-pink-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-comment-dots text-purple-400"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Live Chat</h4>
-                            <p class="text-white/70 font-inter text-sm">Available on our website</p>
-                            <p class="text-white/50 font-inter text-xs mt-1">Instant responses during business hours</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pt-6 border-t border-white/10">
-                    <h4 class="text-white font-montserrat font-semibold mb-4">Follow Us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-accent hover:border-accent hover:text-dark transition-all">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-accent hover:border-accent hover:text-dark transition-all">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-accent hover:border-accent hover:text-dark transition-all">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Quick Start Guide -->
-            <div class="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-                <h3 class="text-xl font-montserrat font-bold text-white mb-6">Quick Start Guide</h3>
-                
-                <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span class="text-accent font-montserrat font-bold text-sm">1</span>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Book Your FREE Demo</h4>
-                            <p class="text-white/60 font-inter text-sm">See exactly what your website will look like - no payment required</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="w-8 h-8 bg-purple-400/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span class="text-purple-400 font-montserrat font-bold text-sm">2</span>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">30-Minute Discovery Call</h4>
-                            <p class="text-white/60 font-inter text-sm">We learn about your business and design preferences</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="w-8 h-8 bg-green-400/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span class="text-green-400 font-montserrat font-bold text-sm">3</span>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Watch The Magic Happen</h4>
-                            <p class="text-white/60 font-inter text-sm">Daily updates as we build your custom website</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start space-x-4">
-                        <div class="w-8 h-8 bg-yellow-400/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span class="text-yellow-400 font-montserrat font-bold text-sm">4</span>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-montserrat font-semibold mb-1">Launch in 7 Days</h4>
-                            <p class="text-white/60 font-inter text-sm">Your website goes live with hosting and support included</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-8 pt-6 border-t border-white/10">
-                    <p class="text-white/60 font-inter text-sm mb-4">Ready to transform your online presence?</p>
-                    <a href="pricing.html" class="gradient-primary text-white px-8 py-3 rounded-full font-montserrat font-semibold text-sm hover:scale-105 transition-transform duration-300 inline-block w-full text-center">
-                        Start Your FREE Demo
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <section id="final-cta" class="py-16 md:py-20 section-modern relative overflow-hidden">
     <div class="absolute inset-0">

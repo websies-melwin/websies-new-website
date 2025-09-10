@@ -50,10 +50,10 @@ function loadHeaderDirectly() {
     if (headerPlaceholder) {
         headerPlaceholder.innerHTML = `
 <!-- Global Header Component -->
-<header id="header" class="fixed w-full top-0 z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
+<header id="header" class="fixed w-full top-0 z-50 border-b border-white/5">
     <div class="container mx-auto px-4 sm:px-6 py-5 flex justify-between items-center">
         <!-- Logo -->
-        <a href="index.html" class="text-2xl font-montserrat font-bold text-white">
+        <a href="index.html" class="text-2xl font-inter font-bold text-white">
             Websies
         </a>
         

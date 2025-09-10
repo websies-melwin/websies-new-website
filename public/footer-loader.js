@@ -14,7 +14,7 @@ function loadFooterDirectly() {
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
                 <div class="lg:col-span-2">
                     <div class="flex items-center mb-6">
-                        <h3 class="text-3xl font-montserrat font-bold text-white mr-4">Websies</h3>
+                        <h3 class="text-3xl font-inter font-bold text-white mr-4">Websies</h3>
                         <div class="text-[var(--accent-cyan)] animate-pulse">✨</div>
                     </div>
                     <p class="text-[var(--text-muted)] font-inter text-base mb-8 max-w-lg leading-relaxed">
