@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Websies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="auth.js"></script>
+    <script src="header-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    
+    <style>
+        :root {
+            --bg-primary: #13171F;
+            --bg-surface: #1A1F2E;
+            --bg-surface-elevated: #212738;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8BCC8;
+            --text-muted: #9CA3AF;
+            --accent-cyan: #00F2FE;
+            --accent-blue: #0A84FF;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-accent: rgba(0, 242, 254, 0.3);
+            --glow-cyan: rgba(0, 242, 254, 0.15);
+            --glow-blue: rgba(10, 132, 255, 0.15);
+        }
+
+        body { 
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #1A1F2E 50%, #13171F 100%);
+            background-attachment: fixed;
+            padding-top: 80px;
+        }
+        
+        .gradient-primary { background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%); }
+        .gradient-accent { background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%); }
+        .text-gradient { background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        /* Modern card styling */
+        .modern-card {
+            background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .login-container {
+            min-height: calc(100vh - 160px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px var(--glow-cyan);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            "theme": {
+                "extend": {
+                    "fontFamily": {
+                        "montserrat": ["Montserrat", "sans-serif"],
+                        "inter": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    "colors": {
+                        "cyan-400": "#FF416C",
+                        "blue-500": "#FF4B2B",
+                        "accent": "#00F2FE",
+                        "dark": "#1A1A1A"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif !important;
+        }
+        
+        /* Preserve Font Awesome icons */
+        .fa, .fas, .far, .fal, .fab {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <!-- Global Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <div class="login-container">
+        <div class="login-form">
+            <div class="modern-card" style="padding: 3rem;">
+                <div class="text-center mb-8">
+                    <i class="fas fa-lock text-4xl text-accent mb-4"></i>
+                    <h1 class="text-3xl font-montserrat font-bold text-white mb-2">Welcome Back</h1>
+                    <p class="text-white/70 font-inter">Log in to access your dashboard</p>
+                </div>
+
+                <div id="message-container"></div>
+
+                <form id="loginForm" onsubmit="handleFormLogin(event)">
+                    <div class="mb-4">
+                        <label class="block text-white/80 text-sm font-inter mb-2">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email"
+                            class="form-input"
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-white/80 text-sm font-inter mb-2">Password</label>
+                        <input 
+                            type="password" 
+                            id="password"
+                            class="form-input"
+                            placeholder="Enter your password"
+                            required
+                        />
+                    </div>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="rememberMe" class="mr-2">
+                            <span class="text-white/70 text-sm font-inter">Remember me</span>
+                        </label>
+                        <a href="#" class="text-accent text-sm font-inter hover:underline">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" id="loginButton" class="btn-login">
+                        <span id="loginButtonText">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Log In
+                        </span>
+                        <span id="loginButtonLoading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin mr-2"></i>
+                            Please wait...
+                        </span>
+                    </button>
+                </form>
+
+                <div class="text-center mt-6">
+                    <p class="text-white/60 text-sm font-inter">
+                        Don't have an account? 
+                        <a href="mailto:support@websies.co?subject=Account Request" class="text-accent font-semibold hover:underline">Contact us</a>
+                    </p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <div class="text-center mb-4">
+                        <p class="text-white/60 text-sm font-inter mb-4">Demo Credentials (for testing)</p>
+                        <div class="bg-white/5 p-3 rounded-lg text-left">
+                            <p class="text-white/80 text-sm"><strong>Email:</strong> demo@websies.co</p>
+                            <p class="text-white/80 text-sm"><strong>Password:</strong> demo123</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (isLoggedIn) {
+                window.location.href = '/dashboard.html';
+            }
+        });
+
+        function handleFormLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            const messageContainer = document.getElementById('message-container');
+            const loginButton = document.getElementById('loginButton');
+            const loginButtonText = document.getElementById('loginButtonText');
+            const loginButtonLoading = document.getElementById('loginButtonLoading');
+
+            // Clear previous messages
+            messageContainer.innerHTML = '';
+
+            // Show loading state
+            loginButton.disabled = true;
+            loginButtonText.style.display = 'none';
+            loginButtonLoading.style.display = 'inline';
+
+            // Simulate network delay
+            setTimeout(() => {
+                // Check credentials
+                if (validateCredentials(email, password)) {
+                    // Success
+                    const userName = email.split('@')[0];
+                    
+                    // Store login status
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('userName', userName);
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('rememberMe', 'true');
+                    }
+
+                    // Show success message
+                    messageContainer.innerHTML = `
+                        <div class="success-message">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Login successful! Redirecting to dashboard...
+                        </div>
+                    `;
+
+                    // Redirect after short delay
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+
+                } else {
+                    // Error
+                    messageContainer.innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            Invalid email or password. Please try again.
+                        </div>
+                    `;
+
+                    // Reset button state
+                    loginButton.disabled = false;
+                    loginButtonText.style.display = 'inline';
+                    loginButtonLoading.style.display = 'none';
+                }
+            }, 1000); // 1 second delay to simulate network
+        }
+
+        function validateCredentials(email, password) {
+            // Demo credentials
+            const validCredentials = [
+                { email: 'demo@websies.co', password: 'demo123' },
+                { email: 'test@websies.co', password: 'test123' },
+                { email: 'melwin@websies.co', password: 'melwin123' },
+                { email: 'ahlgrenmelwin8@gmail.com', password: 'password123' },
+            ];
+
+            return validCredentials.some(cred => cred.email === email && cred.password === password);
+        }
+
+        // Fill demo credentials on click
+        function fillDemoCredentials() {
+            document.getElementById('email').value = 'demo@websies.co';
+            document.getElementById('password').value = 'demo123';
+        }
+
+        // Add click handler to demo credentials
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoCredentials = document.querySelector('.bg-white\\/5');
+            if (demoCredentials) {
+                demoCredentials.style.cursor = 'pointer';
+                demoCredentials.addEventListener('click', fillDemoCredentials);
+            }
+        });
+    </script>
+</body>
+</html>
