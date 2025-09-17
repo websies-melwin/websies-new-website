@@ -1,290 +1,142 @@
--- Websies Database Schema
--- PostgreSQL / Supabase
--- RLS disabled for initial development
+-- Websies Authentication Database Schema
+-- Run this in your Supabase SQL Editor
 
--- Enable UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
--- Drop existing tables if they exist (for clean migrations)
-DROP TABLE IF EXISTS referral_clicks CASCADE;
-DROP TABLE IF EXISTS referrals CASCADE;
-DROP TABLE IF EXISTS site_stats CASCADE;
-DROP TABLE IF EXISTS customer_sites CASCADE;
-DROP TABLE IF EXISTS subscriptions CASCADE;
-DROP TABLE IF EXISTS contact_messages CASCADE;
-DROP TABLE IF EXISTS profiles CASCADE;
-
--- ==========================================
--- PROFILES TABLE
--- ==========================================
-CREATE TABLE profiles (
-    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-    full_name VARCHAR(255),
-    role VARCHAR(50) DEFAULT 'customer' CHECK (role IN ('customer', 'admin', 'owner')),
-    referral_code VARCHAR(20) UNIQUE NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+-- Create profiles table
+CREATE TABLE IF NOT EXISTS profiles (
+  id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
+  email TEXT UNIQUE,
+  name TEXT,
+  business_name TEXT,
+  role TEXT DEFAULT 'customer' CHECK (role IN ('customer', 'admin', 'owner')),
+  subscription_status TEXT DEFAULT 'inactive',
+  subscription_plan TEXT,
+  referral_code TEXT UNIQUE,
+  referred_by UUID REFERENCES profiles(id),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
 
--- Indexes
-CREATE INDEX idx_profiles_role ON profiles(role);
-CREATE INDEX idx_profiles_referral_code ON profiles(referral_code);
-
--- 🟡 TODO: Add RLS policies for profiles
--- - Users can read/update own profile
--- - Admins can read all profiles
--- - Owners can read/update all profiles
-
-COMMENT ON TABLE profiles IS 'User profiles linked to Supabase auth.users';
-COMMENT ON COLUMN profiles.role IS 'User role: customer, admin, or owner';
-COMMENT ON COLUMN profiles.referral_code IS 'Unique referral code for affiliate program';
-
--- ==========================================
--- CONTACT MESSAGES TABLE
--- ==========================================
-CREATE TABLE contact_messages (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    user_id UUID REFERENCES profiles(id) ON DELETE SET NULL,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    company VARCHAR(255),
-    plan VARCHAR(100),
-    message TEXT NOT NULL,
-    status VARCHAR(50) DEFAULT 'new' CHECK (status IN ('new', 'read', 'replied', 'archived')),
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    replied_at TIMESTAMPTZ,
-    archived_at TIMESTAMPTZ
+-- Create subscriptions table
+CREATE TABLE IF NOT EXISTS subscriptions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  stripe_customer_id TEXT UNIQUE,
+  stripe_subscription_id TEXT UNIQUE,
+  plan TEXT NOT NULL,
+  status TEXT NOT NULL,
+  current_period_start TIMESTAMP WITH TIME ZONE,
+  current_period_end TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
 
--- Indexes
-CREATE INDEX idx_contact_messages_user_id ON contact_messages(user_id);
-CREATE INDEX idx_contact_messages_status ON contact_messages(status);
-CREATE INDEX idx_contact_messages_created_at ON contact_messages(created_at DESC);
-
--- 🟡 TODO: Add email validation constraint
--- 🟡 TODO: Add RLS policies
--- - Users can read own messages
--- - Admins can read/update all messages
-
-COMMENT ON TABLE contact_messages IS 'Contact form submissions from website visitors';
-COMMENT ON COLUMN contact_messages.status IS 'Message status: new, read, replied, archived';
-
--- ==========================================
--- SUBSCRIPTIONS TABLE
--- ==========================================
-CREATE TABLE subscriptions (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    stripe_customer_id VARCHAR(255) UNIQUE,
-    stripe_subscription_id VARCHAR(255) UNIQUE,
-    stripe_price_id VARCHAR(255),
-    status VARCHAR(50) NOT NULL DEFAULT 'trialing' 
-        CHECK (status IN ('trialing', 'active', 'canceled', 'incomplete', 
-                         'incomplete_expired', 'past_due', 'unpaid', 'paused')),
-    current_period_start TIMESTAMPTZ,
-    current_period_end TIMESTAMPTZ,
-    cancel_at_period_end BOOLEAN DEFAULT FALSE,
-    canceled_at TIMESTAMPTZ,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+-- Create referrals table
+CREATE TABLE IF NOT EXISTS referrals (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  referrer_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  referred_email TEXT,
+  referred_id UUID REFERENCES profiles(id),
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'completed', 'expired')),
+  reward_amount DECIMAL DEFAULT 20.00,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  completed_at TIMESTAMP WITH TIME ZONE
 );
 
--- Indexes
-CREATE UNIQUE INDEX idx_subscriptions_user_id ON subscriptions(user_id);
-CREATE INDEX idx_subscriptions_status ON subscriptions(status);
-CREATE INDEX idx_subscriptions_stripe_customer_id ON subscriptions(stripe_customer_id);
-CREATE INDEX idx_subscriptions_current_period_end ON subscriptions(current_period_end);
-
--- 🟡 TODO: Add constraint to ensure one active subscription per user
--- 🟡 TODO: Add RLS policies
--- - Users can read own subscription
--- - Admins can read all subscriptions
-
-COMMENT ON TABLE subscriptions IS 'Stripe subscription records for customers';
-COMMENT ON COLUMN subscriptions.status IS 'Stripe subscription status';
-COMMENT ON COLUMN subscriptions.current_period_end IS 'When the current billing period ends';
-
--- ==========================================
--- CUSTOMER SITES TABLE
--- ==========================================
-CREATE TABLE customer_sites (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    url VARCHAR(500),
-    subdomain VARCHAR(100),
-    custom_domain VARCHAR(255),
-    status VARCHAR(50) DEFAULT 'pending' 
-        CHECK (status IN ('pending', 'building', 'review', 'live', 'suspended', 'archived')),
-    notes TEXT,
-    launched_at TIMESTAMPTZ,
-    suspended_at TIMESTAMPTZ,
-    archived_at TIMESTAMPTZ,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+-- Create website_requests table
+CREATE TABLE IF NOT EXISTS website_requests (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  request_type TEXT NOT NULL,
+  description TEXT NOT NULL,
+  priority TEXT DEFAULT 'normal' CHECK (priority IN ('low', 'normal', 'high')),
+  status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'in_progress', 'completed')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
 
--- Indexes
-CREATE INDEX idx_customer_sites_user_id ON customer_sites(user_id);
-CREATE INDEX idx_customer_sites_status ON customer_sites(status);
-CREATE UNIQUE INDEX idx_customer_sites_subdomain ON customer_sites(subdomain) WHERE subdomain IS NOT NULL;
-CREATE UNIQUE INDEX idx_customer_sites_custom_domain ON customer_sites(custom_domain) WHERE custom_domain IS NOT NULL;
+-- Enable Row Level Security
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE referrals ENABLE ROW LEVEL SECURITY;
+ALTER TABLE website_requests ENABLE ROW LEVEL SECURITY;
 
--- 🟡 TODO: Add URL validation constraints
--- 🟡 TODO: Add subdomain format validation (alphanumeric + hyphens only)
--- 🟡 TODO: Add RLS policies
--- - Users can read/update own sites
--- - Admins can read/update all sites
+-- Create policies for profiles
+CREATE POLICY "Users can view own profile" ON profiles
+  FOR SELECT USING (auth.uid() = id);
 
-COMMENT ON TABLE customer_sites IS 'Customer website records';
-COMMENT ON COLUMN customer_sites.subdomain IS 'Subdomain on websies.com (e.g., business.websies.com)';
-COMMENT ON COLUMN customer_sites.custom_domain IS 'Customer custom domain if configured';
-COMMENT ON COLUMN customer_sites.status IS 'Website status in the delivery pipeline';
+CREATE POLICY "Users can update own profile" ON profiles
+  FOR UPDATE USING (auth.uid() = id);
 
--- ==========================================
--- SITE STATS TABLE
--- ==========================================
-CREATE TABLE site_stats (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    site_id UUID NOT NULL REFERENCES customer_sites(id) ON DELETE CASCADE,
-    ts TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    metric VARCHAR(100) NOT NULL,
-    value NUMERIC NOT NULL,
-    metadata JSONB,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
+CREATE POLICY "Users can insert own profile" ON profiles
+  FOR INSERT WITH CHECK (auth.uid() = id);
 
--- Indexes
-CREATE INDEX idx_site_stats_site_id ON site_stats(site_id);
-CREATE INDEX idx_site_stats_ts ON site_stats(ts DESC);
-CREATE INDEX idx_site_stats_metric ON site_stats(metric);
-CREATE INDEX idx_site_stats_site_metric_ts ON site_stats(site_id, metric, ts DESC);
+CREATE POLICY "Admins can view all profiles" ON profiles
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM profiles 
+      WHERE id = auth.uid() 
+      AND role IN ('admin', 'owner')
+    )
+  );
 
--- 🟡 TODO: Add metric validation (pageviews, visitors, bounce_rate, etc.)
--- 🟡 TODO: Consider partitioning by month for large datasets
--- 🟡 TODO: Add RLS policies
--- - Users can read stats for own sites
--- - Admins can read all stats
+-- Create policies for subscriptions
+CREATE POLICY "Users can view own subscriptions" ON subscriptions
+  FOR SELECT USING (auth.uid() = user_id);
 
-COMMENT ON TABLE site_stats IS 'Analytics and metrics for customer websites';
-COMMENT ON COLUMN site_stats.ts IS 'Timestamp of the metric measurement';
-COMMENT ON COLUMN site_stats.metric IS 'Metric name (pageviews, visitors, etc.)';
-COMMENT ON COLUMN site_stats.value IS 'Numeric value of the metric';
-COMMENT ON COLUMN site_stats.metadata IS 'Additional metric metadata in JSON format';
+CREATE POLICY "Users can insert own subscriptions" ON subscriptions
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
 
--- ==========================================
--- REFERRALS TABLE
--- ==========================================
-CREATE TABLE referrals (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    referrer_user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
-    referred_user_id UUID REFERENCES profiles(id) ON DELETE SET NULL,
-    referred_email VARCHAR(255),
-    status VARCHAR(50) DEFAULT 'pending' 
-        CHECK (status IN ('pending', 'converted', 'paid', 'expired', 'rejected')),
-    reward_amount NUMERIC(10,2) DEFAULT 47.00,
-    converted_at TIMESTAMPTZ,
-    paid_at TIMESTAMPTZ,
-    payment_reference VARCHAR(255),
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
+CREATE POLICY "Users can update own subscriptions" ON subscriptions
+  FOR UPDATE USING (auth.uid() = user_id);
 
--- Indexes
-CREATE INDEX idx_referrals_referrer_user_id ON referrals(referrer_user_id);
-CREATE INDEX idx_referrals_referred_user_id ON referrals(referred_user_id);
-CREATE INDEX idx_referrals_status ON referrals(status);
-CREATE INDEX idx_referrals_created_at ON referrals(created_at DESC);
+-- Create policies for referrals
+CREATE POLICY "Users can view own referrals" ON referrals
+  FOR SELECT USING (auth.uid() = referrer_id);
 
--- 🟡 TODO: Add email validation constraint
--- 🟡 TODO: Add constraint to prevent self-referrals
--- 🟡 TODO: Add constraint to prevent duplicate referrals
--- 🟡 TODO: Add RLS policies
--- - Users can read own referrals (as referrer)
--- - Admins can read/update all referrals
+CREATE POLICY "Users can insert referrals" ON referrals
+  FOR INSERT WITH CHECK (auth.uid() = referrer_id);
 
-COMMENT ON TABLE referrals IS 'Referral program tracking';
-COMMENT ON COLUMN referrals.status IS 'Referral status: pending, converted, paid, expired, rejected';
-COMMENT ON COLUMN referrals.reward_amount IS 'Reward amount in GBP (default £47)';
-COMMENT ON COLUMN referrals.payment_reference IS 'External payment system reference (Stripe, PayPal, etc.)';
+-- Create policies for website requests
+CREATE POLICY "Users can view own website requests" ON website_requests
+  FOR ALL USING (auth.uid() = user_id);
 
--- ==========================================
--- REFERRAL CLICKS TABLE
--- ==========================================
-CREATE TABLE referral_clicks (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    referrer_code VARCHAR(20) NOT NULL,
-    ts TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    landing_path VARCHAR(500),
-    user_agent TEXT,
-    ip_address INET,
-    country_code VARCHAR(2),
-    city VARCHAR(255),
-    device_type VARCHAR(50),
-    browser VARCHAR(100),
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Indexes
-CREATE INDEX idx_referral_clicks_referrer_code ON referral_clicks(referrer_code);
-CREATE INDEX idx_referral_clicks_ts ON referral_clicks(ts DESC);
-CREATE INDEX idx_referral_clicks_landing_path ON referral_clicks(landing_path);
-
--- 🟡 TODO: Add IP address anonymization for GDPR compliance
--- 🟡 TODO: Add user agent parsing to extract device_type and browser
--- 🟡 TODO: Add RLS policies
--- - Users can read clicks for own referral code
--- - Admins can read all clicks
-
-COMMENT ON TABLE referral_clicks IS 'Track clicks on referral links';
-COMMENT ON COLUMN referral_clicks.referrer_code IS 'The referral code from the URL';
-COMMENT ON COLUMN referral_clicks.ts IS 'Timestamp of the click';
-COMMENT ON COLUMN referral_clicks.landing_path IS 'The path the user landed on';
-COMMENT ON COLUMN referral_clicks.user_agent IS 'Browser user agent string';
-COMMENT ON COLUMN referral_clicks.ip_address IS 'IP address of the visitor';
-
--- ==========================================
--- HELPER FUNCTIONS
--- ==========================================
-
--- Function to update updated_at timestamp
+-- Create trigger function for updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
+  NEW.updated_at = TIMEZONE('utc', NOW());
+  RETURN NEW;
 END;
 $$ language 'plpgsql';
 
--- ==========================================
--- TRIGGERS
--- ==========================================
+-- Create triggers for updated_at
+CREATE TRIGGER update_profiles_updated_at 
+  BEFORE UPDATE ON profiles
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
--- Auto-update updated_at timestamps
-CREATE TRIGGER update_profiles_updated_at BEFORE UPDATE ON profiles
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_subscriptions_updated_at 
+  BEFORE UPDATE ON subscriptions
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
-CREATE TRIGGER update_subscriptions_updated_at BEFORE UPDATE ON subscriptions
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_website_requests_updated_at 
+  BEFORE UPDATE ON website_requests
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
-CREATE TRIGGER update_customer_sites_updated_at BEFORE UPDATE ON customer_sites
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+-- Function to automatically create profile on signup
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, email, referral_code)
+  VALUES (
+    new.id,
+    new.email,
+    UPPER(SUBSTRING(MD5(RANDOM()::TEXT), 1, 8))
+  );
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
-CREATE TRIGGER update_referrals_updated_at BEFORE UPDATE ON referrals
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
--- ==========================================
--- INITIAL DATA (Optional)
--- ==========================================
-
--- 🟡 TODO: Add seed data for development/testing
-
--- ==========================================
--- FUTURE CONSIDERATIONS
--- ==========================================
--- 🟡 TODO: Add table for website_changes (track all site update requests)
--- 🟡 TODO: Add table for invoices (billing history)
--- 🟡 TODO: Add table for support_tickets
--- 🟡 TODO: Add table for email_logs (track all system emails)
--- 🟡 TODO: Add table for audit_logs (track all admin actions)
--- 🟡 TODO: Consider implementing soft deletes with deleted_at columns
--- 🟡 TODO: Add data retention policies for GDPR compliance
+-- Trigger to automatically create profile on signup
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();

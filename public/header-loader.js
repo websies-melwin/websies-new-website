@@ -69,15 +69,36 @@ function loadHeaderDirectly() {
         <!-- CTA Button and User Menu -->
         <div class="flex items-center space-x-4">
             <!-- User Menu (for logged in users) -->
-            <div class="user-menu" id="userMenu">
-                <div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()">
-                    <span id="userInitial">U</span>
-                </div>
+            <div class="user-menu hidden" id="userMenu">
+                <button class="flex items-center space-x-2 group" onclick="toggleUserDropdown()">
+                    <div class="user-avatar" id="userAvatar">
+                        <span id="userInitial">U</span>
+                    </div>
+                    <svg id="dropdownArrow" class="w-4 h-4 text-white/70 group-hover:text-white transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
                 <div class="user-dropdown" id="userDropdown">
-                    <a href="#dashboard" class="dropdown-item">Dashboard</a>
-                    <a href="#profile" class="dropdown-item">Profile</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" onclick="logout()">Logout</a>
+                    <div class="px-4 py-3 border-b border-gray-700/50 bg-gray-800/50">
+                        <p class="text-sm font-semibold text-white" id="userName">User</p>
+                        <p class="text-xs text-gray-400 truncate" id="userEmail">user@example.com</p>
+                    </div>
+                    <div class="py-2">
+                        <a href="/dashboard" class="dropdown-item flex items-center">
+                            <i class="fas fa-tachometer-alt w-5 text-cyan-400/70 mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="/account" class="dropdown-item flex items-center">
+                            <i class="fas fa-user-cog w-5 text-purple-400/70 mr-3"></i>
+                            <span>My Account</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-gray-700/50 py-2">
+                        <a href="#" class="dropdown-item flex items-center text-red-400/80 hover:text-red-400" onclick="logout()">
+                            <i class="fas fa-sign-out-alt w-5 mr-3"></i>
+                            <span>Sign Out</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -155,9 +176,24 @@ function loadHeaderDirectly() {
 // Export functions for use in other scripts
 window.toggleUserDropdown = function() {
     const dropdown = document.getElementById('userDropdown');
+    const arrow = document.getElementById('dropdownArrow');
     if (dropdown) {
         dropdown.classList.toggle('active');
+        if (arrow) {
+            arrow.classList.toggle('rotate-180');
+        }
     }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!e.target.closest('#userMenu')) {
+            dropdown.classList.remove('active');
+            if (arrow) {
+                arrow.classList.remove('rotate-180');
+            }
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
 }
 
 window.openLoginModal = function() {
